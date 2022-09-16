@@ -53,6 +53,7 @@ icns_uint32_t icns_get_element_order(icns_type_t iconType)
 	case ICNS_128x128_32BIT_ARGB_DATA:
 	case ICNS_128x128_2X_32BIT_ARGB_DATA:
 		return 25;
+	case ICNS_64x64_32BIT_ARGB_DATA:
 	case ICNS_32x32_2X_32BIT_ARGB_DATA:
 		return 24;
 	case ICNS_16x16_2X_32BIT_ARGB_DATA:
@@ -139,6 +140,8 @@ icns_type_t icns_get_mask_type_for_icon_type(icns_type_t iconType)
 	case ICNS_256x256_32BIT_ARGB_DATA:
 		return ICNS_NULL_MASK;
 	case ICNS_128x128_32BIT_ARGB_DATA:
+		return ICNS_NULL_MASK;
+	case ICNS_64x64_32BIT_ARGB_DATA:
 		return ICNS_NULL_MASK;
 
 	// 32-bit image types - 8-bit mask type
@@ -302,6 +305,15 @@ icns_icon_info_t icns_get_image_info_for_type(icns_type_t iconType)
 		iconInfo.isMask = 0;
 		iconInfo.iconWidth = 128;
 		iconInfo.iconHeight = 128;
+		iconInfo.iconChannels = 4;
+		iconInfo.iconPixelDepth = 8;
+		iconInfo.iconBitDepth = 32;
+		break;
+	case ICNS_64x64_32BIT_ARGB_DATA:
+		iconInfo.isImage = 1;
+		iconInfo.isMask = 0;
+		iconInfo.iconWidth = 64;
+		iconInfo.iconHeight = 64;
 		iconInfo.iconChannels = 4;
 		iconInfo.iconPixelDepth = 8;
 		iconInfo.iconBitDepth = 32;
@@ -681,7 +693,7 @@ icns_type_t	icns_get_type_from_image_info_advanced(icns_icon_info_t iconInfo, ic
 		if(iconInfo.iconBitDepth == 32)
 			return ICNS_32x32_2X_32BIT_ARGB_DATA;
 		else
-			return ICNS_NULL_TYPE;
+			return ICNS_64x64_32BIT_ARGB_DATA;
 		break;
 	case 128:
 		if(iconInfo.isImage == 1 || iconInfo.iconBitDepth == 32)
