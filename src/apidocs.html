@@ -56,13 +56,13 @@ libicns release 0.8.0, version 2:8:2
 <li><a href="#iconimage">Part V: Manipulating images of the icon family and icon elements</a>
  <ol type="i">
    <li>Fast retrival of a complete icon image from an icon family</li>
-   <li>Retriving a image or mask from an icon element</li>
+   <li>Retrieving a image or mask from an icon element</li>
    <li>Initializing an empty image - ready for data</li>
    <li>Freeing the memory allocated by an icon image</li>
  </ol>
 </li>
 <br>
-<li><a href="#transcoding">Part VI: Decoding and encoding image data for certian formats</a>
+<li><a href="#transcoding">Part VI: Decoding and encoding image data for certain formats</a>
  <ol type="i">
    <li>Decoding and encoding 3 channel RLE data</li>
    <li>Decoding and encoding jpeg2000 image data</li>
@@ -97,19 +97,19 @@ int main(void)
 	FILE            *inFile = NULL;
 	icns_family_t	*iconFamily = NULL;
 	icns_image_t	iconImage;
-	
+
 	inFile = fopen( "test.icns", "r" );
-	
+
 	if( inFile == NULL ) {
 		fprintf(stderr,"Unable to open test.icns!\n");
 		goto cleanup;
 	}
-	
+
 	// Import icon family from the file data
 	error = icns_read_family_from_file(inFile,&iconFamily);
-		
+
 	fclose(inFile);
-		
+
 	if(error) {
 		fprintf(stderr,"Unable to read icns family from file!\n");
 	} else {
@@ -117,7 +117,7 @@ int main(void)
 		// Read in a 128x128 32-bit RGBA image (with mask in alpha channel)
 		// from the 128x128 32-bit icon and 128x128 8-bit mask
 		error = icns_get_image32_with_mask_from_family(iconFamily,ICNS_128X128_32BIT_DATA,&iconImage);
-		
+
 		if(error) {
 			fprintf(stderr,"Unable to get 128x128 image icon family!\n");
 		} else {
@@ -128,17 +128,17 @@ int main(void)
 			printf("image pixel depth: %d\n",image->imagePixelDepth);
 			printf("image data size: %ul\n",image->imageDataSize);
 		}
-		
+
 		// Free the memory used by the image
 		icns_image_free(&iconImage);
 	}
-	
+
 	// Free the memory used by the icon family
 	if(iconFamily != NULL) {
 		free(iconFamily);
 		iconFamily = NULL;
 	}
-	
+
 	return error;
 }
 </PRE>
@@ -330,10 +330,10 @@ Constants returned by most libicns functions:
 <tr><th align=left>return code constant</th><th align=left>value</th><th align=left>description</th></tr>
 <tr><td>ICNS_STATUS_OK </td><td>0</td><td>no error</td></tr>
 <tr><td>ICNS_STATUS_NULL_PARAM</td><td>-1</td><td>a null pointer was passed to a function</td></tr>
-<tr><td>ICNS_STATUS_NO_MEMORY</td><td>-2</td><td>an error occured allocating memory</td></tr>
+<tr><td>ICNS_STATUS_NO_MEMORY</td><td>-2</td><td>an error occurred allocating memory</td></tr>
 <tr><td>ICNS_STATUS_INVALID_DATA</td><td>-3</td><td>invalid data was read or passed to a function</td></tr>
-<tr><td>ICNS_STATUS_IO_READ_ERR</td><td>1</td><td>an error occured while reading a file</td></tr>
-<tr><td>ICNS_STATUS_IO_WRITE_ERR</td><td>2</td><td>an error occured while writing to a file</td></tr>
+<tr><td>ICNS_STATUS_IO_READ_ERR</td><td>1</td><td>an error occurred while reading a file</td></tr>
+<tr><td>ICNS_STATUS_IO_WRITE_ERR</td><td>2</td><td>an error occurred while writing to a file</td></tr>
 <tr><td>ICNS_STATUS_DATA_NOT_FOUND</td><td>3</td><td>the necessary or requested data was not found</td></tr>
 <tr><td>ICNS_STATUS_UNSUPPORTED</td><td>4</td><td>the requested data was not supported by libicns</td></tr>
 </table>
@@ -418,7 +418,7 @@ int icns_get_image32_with_mask_from_family(icns_family_t *iconFamily,icns_type_t
 </P>
 
 <BR>
-<FONT SIZE="+1"><B>Retriving a image or mask from an icon element</B></FONT>
+<FONT SIZE="+1"><B>Retrieving a image or mask from an icon element</B></FONT>
 <P>
 int icns_get_image_from_element(icns_element_t *iconElement,icns_image_t *imageOut);<BR>
 int icns_get_mask_from_element(icns_element_t *iconElement,icns_image_t *imageOut);<BR>
@@ -439,7 +439,7 @@ int icns_free_image(icns_image_t *imageIn);<BR>
 
 <HR>
 <a name="transcoding"></a>
-<FONT SIZE="+2"><B>Part VI: Decoding and encoding image data for certian formats</B></FONT>
+<FONT SIZE="+2"><B>Part VI: Decoding and encoding image data for certain formats</B></FONT>
 <BR><BR>
 <FONT SIZE="+1"><B>Decoding and encoding 3 channel RLE data</B></FONT>
 <P>

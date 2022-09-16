@@ -3,7 +3,7 @@ File:       icns.h
 Copyright (C) 2001-2012 Mathew Eis <mathew@eisbox.net>
 Copyright (C) 2002 Chenxiao Zhao <chenxiao.zhao@gmail.com>
 
-With the exception of the limited portions mentiond, this library
+With the exception of the limited portions mentioned, this library
 is free software; you can redistribute it and/or modify it under
 the terms of the GNU Lesser General Public License as published
 by the Free Software Foundation; either version 2.1 of the License,
@@ -16,17 +16,15 @@ Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the
-Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, 
+Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301, USA.
 */
 
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdint.h>
-#include <string.h>
-
 #ifndef _ICNS_H_
 #define	_ICNS_H_
+
+#include <stdio.h>
+#include <stdint.h>
 
 /* basic data types */
 typedef uint8_t         icns_bool_t;
@@ -140,8 +138,8 @@ typedef struct icns_icon_info_t
 #define ICNS_OPEN_VARIANT             0x6F70656E  // "open"
 #define ICNS_OPEN_DROP_VARIANT        0x6F647270  // "odrp"
 
-#define ICNS_NULL_DATA                0x00000000 
-#define ICNS_NULL_MASK                0x00000000 
+#define ICNS_NULL_DATA                0x00000000
+#define ICNS_NULL_MASK                0x00000000
 
 /* icns file / resource type constants */
 
@@ -149,7 +147,7 @@ typedef struct icns_icon_info_t
 
 #define ICNS_MACBINARY_TYPE           0x6D42494E  // "mBIN"
 
-#define ICNS_NULL_TYPE                0x00000000 
+#define ICNS_NULL_TYPE                0x00000000
 
 /* icns error return values */
 

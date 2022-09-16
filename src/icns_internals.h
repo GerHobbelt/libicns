@@ -3,7 +3,7 @@ File:       icns.h
 Copyright (C) 2001-2012 Mathew Eis <mathew@eisbox.net>
 Copyright (C) 2002 Chenxiao Zhao <chenxiao.zhao@gmail.com>
 
-With the exception of the limited portions mentiond, this library
+With the exception of the limited portions mentioned, this library
 is free software; you can redistribute it and/or modify it under
 the terms of the GNU Lesser General Public License as published
 by the Free Software Foundation; either version 2.1 of the License,
@@ -16,14 +16,9 @@ Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the
-Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, 
+Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301, USA.
 */
-
-#include <stdio.h>
-#include <stdlib.h>
-#include <stdint.h>
-#include <string.h>
 
 #include "icns.h"
 
@@ -32,13 +27,35 @@ Boston, MA 02110-1301, USA.
 #ifndef _ICNS_INTERNALS_H_
 #define	_ICNS_INTERNALS_H_
 
+/*
+These macros will work on systems that support unaligned
+accesses, as well as those that don't support it.
+Unfortunately, gcc doesn't support unaligned access well
+with memcpy on some architectures due to a combination of
+memcpy being inlined during the optimization process and
+memory alignment. So, we try to work around this here.
+*/
+
+// If the autotools didn't tell us, try and make a good guess
+#ifndef HAVE_UNALIGNED_MEMCPY
+ #if defined(__GNUC__) && (defined(__arm__) || defined(__thumb__) || defined(__sparc__))
+  #define HAVE_UNALIGNED_MEMCPY 0
+ #else
+  #define HAVE_UNALIGNED_MEMCPY 1
+ #endif
+#endif
+
+#if HAVE_UNALIGNED_MEMCPY == 1
+  #include <string.h>
+#endif
+
 /*  Compile-time variables   */
 /*  These should really be set from the Makefile */
 
 // Enable debugging messages?
 // #define	ICNS_DEBUG	1
 
-// Enable supprt for 256x256, 512x512 and 1024x1024 icons
+// Enable support for 256x256, 512x512 and 1024x1024 icons
 // Use either Jasper or OpenJPEG, but not both
 // #define	ICNS_JASPER
 // #define	ICNS_OPENJPEG
@@ -125,24 +142,6 @@ static inline icns_argb_t ICNS_RGBA_TO_ARGB(icns_rgba_t pxin) {
 	pxout.a = pxin.a;
 	return pxout;
 }
-
-/*
-These macros will work on systems that support unaligned
-accesses, as well as those that don't support it.
-Unfortunately, gcc doesn't support unaligned access well
-with memcpy on some architectures due to a combination of
-memcpy being inlined during the optimization process and
-memory alignment. So, we try to work around this here.
-*/
-
-// If the autotools didn't tell us, try and make a good guess
-#ifndef HAVE_UNALIGNED_MEMCPY
- #if defined(__GNUC__) && (defined(__arm__) || defined(__thumb__) || defined(__sparc__))
-  #define HAVE_UNALIGNED_MEMCPY 0
- #else
-  #define HAVE_UNALIGNED_MEMCPY 1
- #endif
-#endif
 
 // Set up the macros
 #if HAVE_UNALIGNED_MEMCPY == 0

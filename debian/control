@@ -5,14 +5,14 @@ Uploaders: Paul Wise <pabs@debian.org>
 Build-Depends:
  debhelper (>= 9),
  dh-autoreconf,
- libjasper-dev,
+ libopenjpeg-dev,
  libjpeg-dev,
  libpng-dev
-Standards-Version: 3.9.3
+Standards-Version: 3.9.6
 Section: libs
-Homepage: http://icns.sourceforge.net/
-Vcs-Svn: http://icns.svn.sourceforge.net/svnroot/icns
-Vcs-Browser: http://icns.svn.sourceforge.net/
+Homepage: https://icns.sourceforge.io/
+Vcs-Git: https://git.code.sf.net/p/icns/code/
+Vcs-Browser: https://sourceforge.net/p/icns/code/
 
 Package: libicns1
 Architecture: any
@@ -45,7 +45,7 @@ Architecture: any
 Multi-Arch: foreign
 Depends: ${misc:Depends}, ${shlibs:Depends}
 Description: utilities for manipulating Mac OS icns files
- icnsutils includes icns2png and png2icns, two utilies used to
+ icnsutils includes icns2png and png2icns, two utilities used to
  extract PNG images from icns files, and create icns files from
  PNG images.
 Section: graphics

@@ -9,7 +9,7 @@ Release:     %{release}
 Epoch:       1
 Copyright:   GNU General Public License
 Group:       Graphics
-URL:         http://sourceforge.net/projects/icns
+URL:         https://sourceforge.net/projects/icns/
 Packager:    Paul Wise <pabs@debian.org>
 Vendor:      Mathew Eis <mathew@eisbox.net>
 Source:      %{package}-%{version}.tar.gz

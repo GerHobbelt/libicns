@@ -16,12 +16,14 @@ Lesser General Public License for more details.
 
 You should have received a copy of the GNU Lesser General Public
 License along with this library; if not, write to the
-Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, 
+Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
 Boston, MA 02110-1301, USA.
 */
 
 #ifndef _COLORMAPS_H_
 #define	_COLORMAPS_H_	1
+
+#include "icns.h"
 
 typedef struct icns_colormap_rgb_t
 {

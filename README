@@ -1,5 +1,5 @@
 ===============================================================================
-README for libicns 0.8.1 - June 14, 2012
+README for libicns
 Copyright (C) 2001-2012 Mathew Eis <mathew@eisbox.net>
 
 Other individuals have supported the development of libicns; they are credited
@@ -27,7 +27,7 @@ This package include the following libraries and utilities:
 2) icns2png - A utility for converting icns files into png images
 3) icontainer2icns - A utility for extracting icns files from icontainer packs
 
-You should be able to get the latest version at http://sf.net/projects/icns
+You should be able to get the latest version at https://sf.net/p/icns
 
 ===============================================================================
 libicns is a library for manipulation of the Mac OS icns resource format, also
@@ -82,27 +82,28 @@ rsrc files, or applesingle/appledouble encoded rsrc files
 libicns (and icns2png) can decode all five storage formats
 
 The .icns files are much easier to deal with, since they are in a format that
-can be easily accesed from Linux/UNIX/Windows.
+can be easily accessed from Linux/UNIX/Windows.
 
-You can however access the icons from the resource files. OS X Icons like
-those from http://interfacelift.com/icons-mac/ are compressed in .sit files.
-These files can be uncompressed using Aladdin Stuffit Expander for Linux,
-which can be obtained from http://www.stuffit.com/unix/index.html
+You can however access the icons from the resource files. MacOS X icons
+like older icons from IterfaceLIFT are compressed in .sit files.
 
-When unstuffing, be sure to use a command similar to the following:
+ https://interfacelift.com/icons/downloads/date/mac_os_x/
 
-unstuff --text=auto --macbinary=auto --eol=unix icons.hqx.sit
+These StuffIt .sit files can be uncompressed using The Unarchiver (unar):
 
-This will help ensure that the resource forks are uncompressed into
-MacBinary files, so that icns2png can read them.
+ https://unarchiver.c3.cx/
 
-If there are resource forks in the files, when stuffit decompresses them,
+Using the unar command-line looks like this:
+
+ unar some-icon-archive.sit
+
+If there are resource forks in the files, when unar decompresses them,
 it will create two files from the one mac file. For example, if the mac
 file was named "Gnu", the resulting decomressed files will be
-"Gnu", and "Gnu_1". The "Snowflake_1" file is the resource
+"Gnu", and "Gnu.rsrc". The "Snowflake.rsrc" file is the resource
 fork. This is the file you will want to extract the icon from. The file
 "Gnu" does not contain any icon data. If, however, there is no
-"Gnu_1", then the file may be in the .icns format, and you will
+"Gnu.rsrc", then the file may be in the .icns format, and you will
 extract the icon from "Gnu" - resulting in a file "Gnu.png"
 
 It is really fairly simple, once you get the hang of it - you will also

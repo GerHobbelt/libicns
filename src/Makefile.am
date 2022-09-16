@@ -5,6 +5,8 @@ libicns_la_LDFLAGS = -version-info 3:0:2
 
 libicns_la_LIBADD = @PNG_LIBS@ @JP2000_LIBS@
 
+libicns_la_CFLAGS = $(PNG_CFLAGS) $(JP2000_CFLAGS)
+
 libicns_la_SOURCES = \
   icns_debug.c \
   icns_element.c \
@@ -17,7 +19,7 @@ libicns_la_SOURCES = \
   icns_utils.c \
   icns_colormaps.h \
   icns_internals.h \
-  icns.h 
+  icns.h
 
 AM_CFLAGS = -Wall
 

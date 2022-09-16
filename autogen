@@ -1,0 +1,3 @@
+#!/bin/sh
+mkdir --parents m4 build-aux
+autoreconf --force --install --symlink --warnings=all

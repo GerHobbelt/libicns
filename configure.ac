@@ -1,9 +1,11 @@
 #         -*- Autoconf -*-
 # Process this file with autoconf to produce a configure script.
-AC_PREREQ(2.59)
-AC_INIT(libicns, 0.8.1, mathew@eisbox.net)
-AM_INIT_AUTOMAKE
+AC_PREREQ([2.69])
+AC_INIT([libicns],[0.8.1],[https://sourceforge.net/p/icns/bugs/])
 AC_CONFIG_SRCDIR([src/icns.h])
+AC_CONFIG_MACRO_DIR([m4])
+AC_CONFIG_AUX_DIR([build-aux])
+AM_INIT_AUTOMAKE
 AM_MAINTAINER_MODE([enable])
 
 # To enable debugging mode
@@ -19,29 +21,44 @@ fi
 
 # Stuff for the config.h.in file
 AC_CONFIG_HEADERS(config.h)
-AC_GNU_SOURCE
+AC_USE_SYSTEM_EXTENSIONS
 
 # Checks for programs.
+AM_PROG_AR
 AC_PROG_CC
 AC_PROG_LN_S
-AC_PROG_LIBTOOL
+LT_INIT
 
 # Checks for header files.
 AC_HEADER_STDC
 AC_CHECK_HEADERS(stdint.h)
 AC_CHECK_HEADERS(getopt.h)
+AC_CHECK_HEADERS([stddef.h])
 
 # Checks for typedefs, structures, and compiler characteristics.
 AC_C_INLINE
+AC_TYPE_INT16_T
+AC_TYPE_INT32_T
+AC_TYPE_INT64_T
+AC_TYPE_INT8_T
 AC_C_CONST
 AC_C_BIGENDIAN
 AC_TYPE_OFF_T
 AC_TYPE_SIZE_T
 AC_TYPE_MODE_T
+AC_TYPE_UINT16_T
+AC_TYPE_UINT32_T
+AC_TYPE_UINT64_T
+AC_TYPE_UINT8_T
 
 # Checks for library functions.
 AC_FUNC_FORK
 AC_CHECK_LIB(getopt,getopt_long)
+AC_FUNC_MALLOC
+AC_FUNC_REALLOC
+AC_CHECK_FUNCS([memset])
+AC_CHECK_FUNCS([mkdir])
+AC_CHECK_FUNCS([strerror])
 
 # Check for memcpy unaligned copy support
 AC_MSG_CHECKING([whether memcpy works with unaligned data])
@@ -163,15 +180,11 @@ AC_SUBST(JP2000_LIBS, "-ljasper")
 AC_CHECK_HEADERS([jasper/jasper.h])
 AC_DEFINE([ICNS_JASPER],[1],[We have Jasper])
 ], [
-  AC_CHECK_LIB(openjpeg2, opj_setup_decoder, [
-  AC_SUBST(JP2000_LIBS, "-lopenjpeg2")
-  AC_CHECK_HEADERS([openjpeg.h])
-  AC_DEFINE([ICNS_OPENJPEG],[1],[We have OpenJPEG])
+  PKG_CHECK_MODULES([JP2000], [libopenjp2], [
+  AC_DEFINE([ICNS_OPENJPEG],[2],[We have OpenJPEG 2])
   ], [
-    AC_CHECK_LIB(openjpeg, opj_setup_decoder, [
-    AC_SUBST(JP2000_LIBS, "-lopenjpeg")
-    AC_CHECK_HEADERS([openjpeg.h])
-    AC_DEFINE([ICNS_OPENJPEG],[1],[We have OpenJPEG])
+    PKG_CHECK_MODULES([JP2000], [libopenjpeg1], [
+    AC_DEFINE([ICNS_OPENJPEG],[1],[We have OpenJPEG 1])
     ], [
       AC_MSG_WARN([libopenjpeg or libjasper jp2000 codec libraries not found])
       AC_MSG_WARN([libicns will be built without 256x256 and 512x512 support])

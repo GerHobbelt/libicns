@@ -12,8 +12,7 @@ EXTRA_DIST = \
   COPYING.LGPL-2 \
   COPYING.LGPL-2.1 \
   README.install \
-  DEVNOTES \
-  MANIFEST.sources
+  DEVNOTES
 
 rpm: @PACKAGE@.spec
 	fakeroot rpm --clean -bb @PACKAGE@.spec
@@ -21,30 +20,19 @@ rpm: @PACKAGE@.spec
 distclean-local:
 	-rm -f @PACKAGE@.spec
 
+maintainer-clean-local:
+	-rm -rf build-aux m4
+
 MAINTAINERCLEANFILES = \
-  m4/lt~obsolete.m4 \
-  m4/ltoptions.m4 \
-  m4/ltversion.m4 \
-  m4/ltsugar.m4 \
-  m4/libtool.m4 \
   INSTALL \
-  config.h.in \
-  config.h.in~ \
+  config.h.in* \
   aclocal.m4 \
-  config.guess \
-  config.sub \
   configure \
-  depcomp \
-  install-sh \
-  ltmain.sh \
-  missing \
   Makefile.in
 
 dist-hook:
 	if test ! -e $(distdir)/ChangeLog -o \( $$(wc -l < $(distdir)/ChangeLog) -eq 1 -a -w $(distdir)/ChangeLog \) ; then \
 		if test -d .git ; then \
 			LC_ALL=C git log --pretty --numstat --summary $(VERSION) | git2cl > $(distdir)/ChangeLog ; \
-		elif test -d .svn ; then \
-			svn2cl -o $(distdir)/ChangeLog ; \
 		fi \
 	fi

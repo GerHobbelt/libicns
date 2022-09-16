@@ -15,12 +15,12 @@ Release 0.8.0  (01/20/2012)
 - added awareness of 'TOC ' type to libicns/icns2png
 - added support for PNG icns elements
 - added support for icon variant type
-- fix for alignment/bus errors on ARM/Sparc 
+- fix for alignment/bus errors on ARM/Sparc
 
 Release 0.7.1  (09/03/2009)
 # Sourceforge SVN rev 165 - 170
 - libicns version 2.7.1 (per libtool)
-- 
+-
 
 Release 0.7.0  (07/28/2009)
 # Sourceforge SVN rev 163 - 165
@@ -68,7 +68,7 @@ Release 0.5.7  (06/10/2008)
 # Sourceforge SVN rev 118 - 134
 # libicns version 2.0.1 (per libtool) - (NOTE: should have changed to 2.2.1)
 - Updated to use autoconf 2.61, automake 1.10
-- Added debain packaging to SVN tree (NOTE: Maintainer use only!)
+- Added Debian packaging to SVN tree (NOTE: Maintainer use only!)
 - Moved libicns/ to src/ for more conventional structure
 - Added png2icns utility
 - Added confgure check for libjasper and/or libopenjpeg
@@ -96,7 +96,7 @@ Release 0.5.5  (03/17/2008)
 
 Release 0.5.2  (03/11/2008)
 # Sourceforge SVN rev 93 - 101
-- Restructured code tree to seperate icns2png from libicns
+- Restructured code tree to separate icns2png from libicns
 - Minor bugfixes
 
 Release 0.5.1  (03/07/2008)
@@ -178,5 +178,5 @@ Release 0.0.3 (12/18/2002)
 - Updated README with unstuff information
 
 Release 0.0.2 (01/11/2002)
-- Inital public release
+- Initial public release
 
